@@ -37,21 +37,7 @@ var pretiusLoadJSONObject = (function () {
 
                     createNestedObject(window, lJsLiteralWithWindow);
 
-                    // 1. Remove Object
-                    if (lRemoveObject === 'Y') {
-                        // Parse and delete the existing object
-                        var parts = lJsLiteralWithWindow.split('.');
-                        var propName = parts.pop();
-                        var parent = parts.reduce(function (acc, part) {
-                            return acc[part];
-                        }, window);
-
-                        if (parent && propName in parent) {
-                            delete parent[propName];
-                        }
-                    }
-
-                    // 2. Parse the string to get the parent object and the final property name
+                    // 1. Parse the string to get the parent object and the final property name
                     var parts = lJsLiteralWithWindow.split('.');
                     var propName = parts.pop(); // Extracts final tag
                     // traverse from top level down to the parent of the final property
@@ -59,11 +45,25 @@ var pretiusLoadJSONObject = (function () {
                         return acc[part];
                     }, window);
 
-                    // 3. Dynamic equivalent of: window.appdata = window.appdata || {};
-                    parent[propName] = parent[propName] || {};
-
-                    // 4. Dynamic equivalent of: Object.assign(window.appdata, {"a": 2});
-                    Object.assign(parent[propName], pData);
+                    // 2. Replace or merge based on lRemoveObject
+                    try {
+                        if (lRemoveObject === 'Y') {
+                            parent[propName] = pData;
+                        } else {
+                            // Dynamic equivalent of: window.appdata = window.appdata || {};
+                            parent[propName] = parent[propName] || {};
+                            // Dynamic equivalent of: Object.assign(window.appdata, {"a": 2});
+                            Object.assign(parent[propName], pData);
+                        }
+                    } catch (e) {
+                        if (spinner) spinner.remove();
+                        console.error("Unknown Error for " + lJsLiteralWithWindow, e);
+                        if (da.action.waitForResult) {
+                            // pass true to Stop Execution on Error
+                            apex.da.resume(da.resumeCallback, true);
+                        }
+                        return;
+                    }
 
                     // Remove Spinner
                     if (spinner) spinner.remove();

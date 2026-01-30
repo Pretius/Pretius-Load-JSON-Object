@@ -414,9 +414,20 @@ Compatible with all browsers supported by Oracle APEX.
 
 ## About
 
-**Version:** 24.2.1  
+**Version:** 24.2.2  
 **Author:** Pretius  
-**GitHub:** [https://github.com/pretius/Load-JSON-Object](https://github.com/pretius/Load-JSON-Object)
+**GitHub:** [https://github.com/pretius/Pretius-Load-JSON-Object](https://github.com/pretius/Pretius-Load-JSON-Object)
+
+## Version History
+
+- 24.2.2 (January 2026)
+  - Fix for "Remove Object before Load"
+  - Fix for jsonsql error when no rows returned
+  - Fix for assignments that fail causing inifinite spinner issue
+  
+- 24.2.1 (January 2026)
+   - Initial Version
+
 
 ## License
 

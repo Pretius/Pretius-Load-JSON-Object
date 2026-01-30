@@ -114,10 +114,16 @@ as
                     
                     if l_column_value_list.exists(1) and l_column_value_list(1).count > 0 then
                         l_clob := l_column_value_list(1)(1);
+                    end if;
+
+                    if l_clob is not null then
                         apex_util.prn( p_clob => l_clob, p_escape => false );
                     else
                         apex_util.prn('{}');
                     end if;
+                exception
+                    when no_data_found then
+                        apex_util.prn('{}');
                 end;
                 
             when 'plsql' then

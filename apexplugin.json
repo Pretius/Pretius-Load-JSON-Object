@@ -1,6 +1,6 @@
 {
   "name" : "Pretius Load JSON Object",
-  "version" : "24.2.1",
+  "version" : "24.2.2",
   "description" : "Loads a JSON Object into the page",
   "keywords" : ["json", "load", "object", "data", "dynamic action", "ajax"],
   "homepage" : "https://github.com/pretius/Pretius-Load-JSON-Object",
