@@ -14,9 +14,15 @@ var pretiusLoadJSONObject = (function () {
             .map(item => "#" + item.trim().toUpperCase())
             .join(",");
 
+        // spinner
         var spinner;
-
-        if (lshowSpinner == 'Y') spinner = apex.util.showSpinner(da.triggeringElement); 
+        if (lshowSpinner == 'Y') {
+            try {
+                spinner = apex.util.showSpinner(da.triggeringElement);
+            } catch (error) {
+                spinner = apex.util.showSpinner();
+            }
+        }
 
         apex.server.plugin(
             da.action.ajaxIdentifier,

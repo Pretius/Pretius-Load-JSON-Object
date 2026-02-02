@@ -414,11 +414,14 @@ Compatible with all browsers supported by Oracle APEX.
 
 ## About
 
-**Version:** 24.2.2  
+**Version:** 24.2.3 
 **Author:** Pretius  
 **GitHub:** [https://github.com/pretius/Pretius-Load-JSON-Object](https://github.com/pretius/Pretius-Load-JSON-Object)
 
 ## Version History
+
+- 24.2.3 (February 2026)
+  - Fix spinner error when triggeringElement is window
 
 - 24.2.2 (January 2026)
   - Fix for "Remove Object before Load"
